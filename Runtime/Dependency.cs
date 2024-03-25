@@ -4,7 +4,7 @@ using UnityEngine;
 namespace OneFrame.Dependencies.Runtime
 {
     [Serializable]
-    public class Dependency<T> where T : Component
+    public class Dependency<T> 
     {
         [SerializeField] private Component _dependency;
 
