@@ -1,5 +1,4 @@
 using System;
-using System.Linq;
 using UnityEngine;
 
 namespace OneFrame.Dependencies.Runtime
@@ -18,7 +17,8 @@ namespace OneFrame.Dependencies.Runtime
                 if (_cache != null) return _cache;
 
                 if(_dependency == null) _dependency = DependencyLocator.Instance.Request<T>();   
-                if(_dependency != null) _cache = _dependency.GetComponents<T>().FirstOrDefault(x => _dependency.Equals(x));
+                if(_dependency != null && _dependency.TryGetComponent(out T component)) _cache = component;
+                else _cache = default;
 
                 return _cache;
             }
