@@ -17,7 +17,7 @@ namespace OneFrame.Dependencies.Runtime
                 if (_cache != null) return _cache;
 
                 if(_dependency == null) _dependency = DependencyLocator.Instance.Request<T>();   
-                if(_dependency != null && _dependency.TryGetComponent(out T component)) _cache = component;
+                if(_dependency != null) _cache = _dependency.GetComponents().GetType<T>().FirstOrDefault();
 
                 return _cache;
             }
